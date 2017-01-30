@@ -2062,6 +2062,7 @@ function Tag$1(impl, conf, innerHTML) {
    * @returns { Tag } the current tag instance
    */
   defineProperty(this, 'update', function tagUpdate(data) {
+    updateOpts.apply(this, [isLoop, parent, isAnonymous, opts, instAttrs]);
     if (isFunction(this.shouldUpdate) && !this.shouldUpdate(data)) { return this }
 
     // make sure the data passed will not override
@@ -2071,7 +2072,6 @@ function Tag$1(impl, conf, innerHTML) {
     // inherit properties from the parent, but only for isAnonymous tags
     if (isLoop && isAnonymous) { inheritFrom.apply(this, [this.parent, propsInSyncWithParent]); }
     extend(this, data);
-    updateOpts.apply(this, [isLoop, parent, isAnonymous, opts, instAttrs]);
     if (this.isMounted) { this.trigger('update', data); }
     updateAllExpressions.call(this, expressions);
     if (this.isMounted) { this.trigger('updated'); }
