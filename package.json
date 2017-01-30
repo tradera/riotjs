@@ -23,5 +23,6 @@
   "preferGlobal": true,
   "files": [
     "riot.js"
-  ]
+  ],
+  "browser": "riot.js"
 }
